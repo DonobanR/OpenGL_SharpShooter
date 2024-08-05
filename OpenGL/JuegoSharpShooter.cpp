@@ -232,8 +232,8 @@ int main()
         ourShader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
         // Punto de luz [LÁMPARA 1] izquierda
-        ourShader.setVec3("pointLights[0].position", posLamp1.x + 0.5f, -(posLamp1.y) + 1.0f, posLamp1.z + 4.0f);
-        ourShader.setVec3("pointLights[0].ambient", 0.8f, 0.8f, 0.8f);
+        ourShader.setVec3("pointLights[0].position", posLamp1.x + 30.0f, -(posLamp1.y) + 60.0f, posLamp1.z + 4.0f);
+        ourShader.setVec3("pointLights[0].ambient", 1.0f, 1.0f, 0.8f);
         ourShader.setVec3("pointLights[0].diffuse", 1.0f, 0.82f, 0.0f); //cambio de color
         ourShader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
         ourShader.setFloat("pointLights[0].constant", 1.0f);
@@ -241,8 +241,8 @@ int main()
         ourShader.setFloat("pointLights[0].quadratic", 0.00000000001); //atenuación con la distancia
 
         // Punto de luz [LÁMPARA 2] derecha
-        ourShader.setVec3("pointLights[1].position", posLamp2.x + 0.5f, -(posLamp2.y) + 1.0f, posLamp1.z + 4.0f);
-        ourShader.setVec3("pointLights[1].ambient", 0.8f, 0.8f, 0.8f);
+        ourShader.setVec3("pointLights[1].position", posLamp2.x - 30.0f, -(posLamp2.y) + 60.0f, posLamp2.z + 4.0f);
+        ourShader.setVec3("pointLights[1].ambient", 1.0f, 1.0f, 1.0f);
         ourShader.setVec3("pointLights[1].diffuse", 1.0f, 0.82f, 0.0f);
         ourShader.setVec3("pointLights[1].specular", 1.0f, 1.0f, 1.0f);
         ourShader.setFloat("pointLights[1].constant", 1.0f);
