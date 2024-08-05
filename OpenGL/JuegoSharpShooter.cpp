@@ -175,15 +175,25 @@ int main()
     blanco = Model("model/blanco/scene.gltf");
 
     targetModelMatrix = glm::mat4(1.0f);
-    targetModelMatrix = glm::translate(targetModelMatrix, glm::vec3(30.0f, 50.0f, 50.0f));
+    targetModelMatrix = glm::translate(targetModelMatrix, glm::vec3(30.0f, 50.0f, 350.0f));
     targetModelMatrix = glm::rotate(targetModelMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     targetModelMatrix = glm::rotate(targetModelMatrix, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     targetModelMatrix = glm::scale(targetModelMatrix, glm::vec3(1.0f, 1.0f, 1.0f));
 
+
+    // Inicialización de targetModelMatrix2
     glm::mat4 targetModelMatrix2 = glm::mat4(1.0f);
-    targetModelMatrix2 = glm::translate(targetModelMatrix2, glm::vec3(-30.0f, 50.0f, 50.0f));
-    targetModelMatrix2 = glm::rotate(targetModelMatrix2, glm::radians(45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    targetModelMatrix2 = glm::scale(targetModelMatrix2, glm::vec3(3.0f, 3.0f, 3.0f));
+    targetModelMatrix2 = glm::translate(targetModelMatrix2, glm::vec3(-30.0f, 50.0f, 300.0f));
+    targetModelMatrix2 = glm::rotate(targetModelMatrix2, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    targetModelMatrix2 = glm::rotate(targetModelMatrix2, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    targetModelMatrix2 = glm::scale(targetModelMatrix2, glm::vec3(1.0f, 1.0f, 1.0f));
+
+    // Inicialización de targetModelMatrix3 con una posición diferente
+    glm::mat4 targetModelMatrix3 = glm::mat4(1.0f);
+    targetModelMatrix3 = glm::translate(targetModelMatrix3, glm::vec3(50.0f, 50.0f, 250.0f));
+    targetModelMatrix3 = glm::rotate(targetModelMatrix3, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    targetModelMatrix3 = glm::rotate(targetModelMatrix3, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    targetModelMatrix3 = glm::scale(targetModelMatrix3, glm::vec3(1.0f, 1.0f, 1.0f));
 
     camera.MovementSpeed = 100;
 
@@ -259,6 +269,15 @@ int main()
         ourShader.setMat4("model", targetModelMatrix);
         blanco.Draw(ourShader);
 
+        // Target 2
+        ourShader.setMat4("model", targetModelMatrix2);
+        blanco.Draw(ourShader);
+
+        // Target 3
+        ourShader.setMat4("model", targetModelMatrix3);
+        blanco.Draw(ourShader);
+
+
         // Sbybox
         drawSkybox(ourShader, view, projection, cielo);
 
@@ -322,9 +341,13 @@ int main()
         // Verificar la acción de disparo
         if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
             shootRayFromCamera(camera, blanco, targetModelMatrix);
+            shootRayFromCamera(camera, blanco, targetModelMatrix2);
+            shootRayFromCamera(camera, blanco, targetModelMatrix3);
         }
         ourShader.setMat4("model", targetModelMatrix);
         blanco.Draw(ourShader);
+
+
 
         // render container
         glBindVertexArray(VAO);
@@ -497,6 +520,8 @@ void repositionTarget(glm::mat4& modelMatrix, const glm::vec3& currentPosition) 
     modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f));
 
     // Cambiar la orientación y escala del target
+    float currentFrame = glfwGetTime();
+    modelMatrix = glm::rotate(modelMatrix, currentFrame, glm::vec3(0.0f, 0.0f, 1.0f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 }

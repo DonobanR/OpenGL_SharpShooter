@@ -134,7 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\OpenGL_Stuff\Library\glad.c" />
-    <ClCompile Include="E2_Anrrango_Bayas_Bejarano_Villalba.cpp" />
+    <ClCompile Include="JuegoSharpShooter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\shader_exercise16_mloading.fs" />
